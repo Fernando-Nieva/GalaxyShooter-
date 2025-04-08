@@ -160,7 +160,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 28a0dc9e09b67f3408bc086e4dfaa4b7, type: 2}
+  - {fileID: 2100000, guid: ecd1ad966d8bdc74999dd579ac32c071, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -394,6 +394,7 @@ MonoBehaviour:
   maxY: 3.96
   minX: -9.8
   maxX: 9.8
+  laserPrefab: {fileID: 8829981151022327052, guid: 97baff1c811a9dc4dbe1ba19bdfd83c9, type: 3}
 --- !u!212 &860498556
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -458,7 +459,7 @@ Transform:
   m_GameObject: {fileID: 860498554}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.94, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3458072, y: 0.3458072, z: 0.3458072}
   m_ConstrainProportionsScale: 0
   m_Children: []

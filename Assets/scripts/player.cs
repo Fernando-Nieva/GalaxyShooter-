@@ -12,6 +12,9 @@ public class player : MonoBehaviour
 	public float minX = -8.5f;
 	public float maxX = 8.5f;
 
+
+	public GameObject laserPrefab; // Prefab del láser
+
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -21,6 +24,7 @@ public class player : MonoBehaviour
 	{
 		playerMovement();
 		ApplyBoundaries();
+		laser();
 
 	}
 
@@ -34,6 +38,19 @@ public class player : MonoBehaviour
 
 	
 	}
+
+
+
+	private void laser()
+	{
+		if(Input.GetKeyDown(KeyCode.Space))
+		{
+			Instantiate(laserPrefab, transform.position + new Vector3(0,0.69f,0), Quaternion.identity);
+			
+		}
+
+	}
+
 
 
 	public void ApplyBoundaries()
