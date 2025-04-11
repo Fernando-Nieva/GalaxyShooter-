@@ -2,9 +2,9 @@
 
 public class player : MonoBehaviour
 {
-	public float moveSpeed = 5f;
-	private Rigidbody2D rb;
-	private Vector2 movement;
+	public float _moveSpeed = 5f;
+	private Rigidbody2D _rb;
+	private Vector2 _movement;
 
 	// Límites verticales (Y) y horizontales (X)
 	public float minY = -3.94f;
@@ -14,17 +14,25 @@ public class player : MonoBehaviour
 
 
 	public GameObject laserPrefab; // Prefab del láser
+	public float fireRate = 0.5f; // Tasa de disparo (en segundos)
+	public float cantfire = 0.0f; // Cantidad de disparos por segundo	
+
+	public bool canTripleShoot = false; // Variable para controlar el disparo triple
+	[SerializeField]
+	private GameObject _triplshootPrefab;
+
+
 
 	private void Start()
 	{
-		rb = GetComponent<Rigidbody2D>();
+		_rb = GetComponent<Rigidbody2D>();
 	}
 
 	private void Update()
 	{
 		playerMovement();
 		ApplyBoundaries();
-		laser();
+		Shoot();
 
 	}
 
@@ -33,20 +41,34 @@ public class player : MonoBehaviour
 	private void playerMovement()
 	{
 		// Leer la entrada del teclado
-		movement.x = Input.GetAxisRaw("Horizontal");
-		movement.y = Input.GetAxisRaw("Vertical");
+		_movement.x = Input.GetAxisRaw("Horizontal");
+		_movement.y = Input.GetAxisRaw("Vertical");
 
 	
 	}
 
 
 
-	private void laser()
+	private void Shoot()
 	{
-		if(Input.GetKeyDown(KeyCode.Space))
+
+		if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
 		{
-			Instantiate(laserPrefab, transform.position + new Vector3(0,0.69f,0), Quaternion.identity);
-			
+			if (Time.time > cantfire)
+			{
+
+				if (canTripleShoot )
+			{
+				Instantiate(_triplshootPrefab, transform.position + new Vector3(0.25f, 0.30f, 0), Quaternion.identity);
+				}
+			else
+			{
+				
+				Instantiate(laserPrefab, transform.position + new Vector3(0, 0.69f, 0), Quaternion.identity);	
+			}
+				cantfire = Time.time + fireRate;
+		}
+
 		}
 
 	}
@@ -80,6 +102,6 @@ public class player : MonoBehaviour
 	private void FixedUpdate()
 	{
 		// Mover al jugador con física
-		rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+		_rb.MovePosition(_rb.position +_movement * _moveSpeed * Time.fixedDeltaTime);
 	}
 }

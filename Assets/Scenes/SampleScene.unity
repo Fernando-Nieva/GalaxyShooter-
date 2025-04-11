@@ -389,12 +389,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd7e726517e2ce42b8770ea63a29c98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  _moveSpeed: 5
   minY: -6.6
   maxY: 3.96
-  minX: -9.8
-  maxX: 9.8
+  minX: -9.1
+  maxX: 9.1
   laserPrefab: {fileID: 8829981151022327052, guid: 97baff1c811a9dc4dbe1ba19bdfd83c9, type: 3}
+  fireRate: 0.3
+  cantfire: 0
+  canTripleShoot: 0
+  _triplshootPrefab: {fileID: 8288461950608618845, guid: 0bc473685b9d0244ea7a4cfd1234b26d, type: 3}
 --- !u!212 &860498556
 SpriteRenderer:
   m_ObjectHideFlags: 0
