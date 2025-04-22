@@ -1,90 +1,76 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-public class player : MonoBehaviour
+public class Player : MonoBehaviour
 {
-	public float _moveSpeed = 5f;
+	[Header("Movimiento")]
+	[SerializeField] private float baseSpeed = 5f;
+	private float currentSpeed;
 	private Rigidbody2D _rb;
 	private Vector2 _movement;
 
-	// Límites verticales (Y) y horizontales (X)
-	public float minY = -3.94f;
-	public float maxY = 3.96f;
-	public float minX = -8.5f;
-	public float maxX = 8.5f;
+	[SerializeField] private float minY = -3.94f;
+	[SerializeField] private float maxY = 3.96f;
+	[SerializeField] private float minX = -8.5f;
+	[SerializeField] private float maxX = 8.5f;
 
+	[Header("Disparo")]
+	[SerializeField] private GameObject laserPrefab;
+	[SerializeField] private GameObject tripleShootPrefab;
+	[SerializeField] private float fireRate = 0.5f;
+	private float nextFireTime = 0.0f;
 
-	public GameObject laserPrefab; // Prefab del láser
-	public float fireRate = 0.5f; // Tasa de disparo (en segundos)
-	public float cantfire = 0.0f; // Cantidad de disparos por segundo	
-
-	public bool canTripleShoot = false; // Variable para controlar el disparo triple
-	[SerializeField]
-	private GameObject _triplshootPrefab;
-
-
+	private bool isSpeedPowerUpActive = false;
+	private bool isTripleShootActive = false;
 
 	private void Start()
 	{
 		_rb = GetComponent<Rigidbody2D>();
+		currentSpeed = baseSpeed;
 	}
 
 	private void Update()
 	{
-		playerMovement();
+		HandleInput();
 		ApplyBoundaries();
-		Shoot();
-
+		HandleShooting();
 	}
 
-
-
-	private void playerMovement()
+	private void FixedUpdate()
 	{
-		// Leer la entrada del teclado
+		_rb.MovePosition(_rb.position + _movement * currentSpeed * Time.fixedDeltaTime);
+	}
+
+	private void HandleInput()
+	{
 		_movement.x = Input.GetAxisRaw("Horizontal");
 		_movement.y = Input.GetAxisRaw("Vertical");
 
-	
+		currentSpeed = isSpeedPowerUpActive ? baseSpeed * 2f : baseSpeed;
 	}
 
-
-
-	private void Shoot()
+	private void HandleShooting()
 	{
-
-		if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
+		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && Time.time > nextFireTime)
 		{
-			if (Time.time > cantfire)
-			{
+			nextFireTime = Time.time + fireRate;
 
-				if (canTripleShoot )
+			if (isTripleShootActive && tripleShootPrefab != null)
 			{
-				Instantiate(_triplshootPrefab, transform.position + new Vector3(0.25f, 0.30f, 0), Quaternion.identity);
-				}
-			else
-			{
-				
-				Instantiate(laserPrefab, transform.position + new Vector3(0, 0.69f, 0), Quaternion.identity);	
+				Instantiate(tripleShootPrefab, transform.position + new Vector3(0.25f, 0.30f, 0), Quaternion.identity);
 			}
-				cantfire = Time.time + fireRate;
+			else if (laserPrefab != null)
+			{
+				Instantiate(laserPrefab, transform.position + new Vector3(0, 0.69f, 0), Quaternion.identity);
+			}
 		}
-
-		}
-
 	}
 
-
-
-	public void ApplyBoundaries()
+	private void ApplyBoundaries()
 	{
-		// ✅ Limitar la posición Y del jugador (arriba/abajo)
-		// Si el jugador intenta ir más allá de los límites en Y, lo dejamos justo en el borde
 		float clampedY = Mathf.Clamp(transform.position.y, minY, maxY);
 
-		// ✅ Comportamiento envolvente en el eje X (izquierda/derecha)
-		// Si el jugador se va más allá del borde izquierdo, aparece en el derecho, y viceversa
 		float wrappedX = transform.position.x;
-
 		if (transform.position.x < minX)
 		{
 			wrappedX = maxX;
@@ -94,14 +80,38 @@ public class player : MonoBehaviour
 			wrappedX = minX;
 		}
 
-		// Aplicar la nueva posición corregida
 		transform.position = new Vector3(wrappedX, clampedY, transform.position.z);
 	}
 
+	// === MÉTODOS DE POWER UPS ===
 
-	private void FixedUpdate()
+	public void EnableTripleShoot()
 	{
-		// Mover al jugador con física
-		_rb.MovePosition(_rb.position +_movement * _moveSpeed * Time.fixedDeltaTime);
+		isTripleShootActive = true;
+		StartCoroutine(TripleShootPowerDownRoutine());
+	}
+
+	public void EnableSpeed()
+	{
+		isSpeedPowerUpActive = true;
+		StartCoroutine(SpeedPowerDownRoutine());
+	}
+
+	public void EnableShield()
+	{
+		// Acá podrías activar visualmente el escudo o bloquear daño
+		Debug.Log("¡Escudo activado!");
+	}
+
+	private IEnumerator TripleShootPowerDownRoutine()
+	{
+		yield return new WaitForSeconds(5f);
+		isTripleShootActive = false;
+	}
+
+	private IEnumerator SpeedPowerDownRoutine()
+	{
+		yield return new WaitForSeconds(5f);
+		isSpeedPowerUpActive = false;
 	}
 }
