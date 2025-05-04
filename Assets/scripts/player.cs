@@ -9,6 +9,12 @@ public class Player : MonoBehaviour
 	private Rigidbody2D _rb;
 	private Vector2 _movement;
 
+	public int lives = 3;
+
+	public bool shieldActive = false; // para activar el escudo
+	[SerializeField] private GameObject shieldVisualizer; // para mostrar visual del escudo
+	private bool isInvulnerable = false; // para evitar daño múltiple cuando se desactiva el escudo
+
 	[SerializeField] private float minY = -3.94f;
 	[SerializeField] private float maxY = 3.96f;
 	[SerializeField] private float minX = -8.5f;
@@ -17,11 +23,14 @@ public class Player : MonoBehaviour
 	[Header("Disparo")]
 	[SerializeField] private GameObject laserPrefab;
 	[SerializeField] private GameObject tripleShootPrefab;
+
 	[SerializeField] private float fireRate = 0.5f;
 	private float nextFireTime = 0.0f;
 
 	private bool isSpeedPowerUpActive = false;
 	private bool isTripleShootActive = false;
+
+	[SerializeField] private GameObject _explosionprefab;
 
 	private void Start()
 	{
@@ -99,10 +108,67 @@ public class Player : MonoBehaviour
 
 	public void EnableShield()
 	{
-		// Acá podrías activar visualmente el escudo o bloquear daño
+		shieldActive = true;
+
+		if (shieldVisualizer != null)
+		{
+			shieldVisualizer.SetActive(true);
+		}
+		else
+		{
+			Debug.LogWarning("¡El visualizador del escudo no está asignado!");
+		}
+
+		StartCoroutine(ShieldPowerDownRoutine());
 		Debug.Log("¡Escudo activado!");
 	}
 
+	public void Damage()
+	{
+		if (isInvulnerable) return;
+
+		if (shieldActive)
+		{
+			shieldActive = false;
+
+			if (shieldVisualizer != null)
+				shieldVisualizer.SetActive(false);
+
+			StartCoroutine(TemporaryInvulnerability()); // pequeña protección extra
+			return;
+		}
+
+		lives--;
+
+		if (lives <= 0)
+		{
+			Instantiate(_explosionprefab, transform.position, Quaternion.identity);
+			Destroy(this.gameObject);
+		}
+		else
+		{
+			Debug.Log("Vidas restantes: " + lives);
+		}
+	}
+
+	private IEnumerator TemporaryInvulnerability()
+	{
+		isInvulnerable = true;
+		yield return new WaitForSeconds(0.5f); // evita daño doble justo al perder escudo
+		isInvulnerable = false;
+		
+	}
+	private IEnumerator ShieldPowerDownRoutine()
+	{
+		yield return new WaitForSeconds(5f); // tiempo que dura el escudo
+
+		shieldActive = false;
+
+		if (shieldVisualizer != null)
+			shieldVisualizer.SetActive(false);
+
+		Debug.Log("Escudo desactivado por tiempo.");
+	}
 	private IEnumerator TripleShootPowerDownRoutine()
 	{
 		yield return new WaitForSeconds(5f);
