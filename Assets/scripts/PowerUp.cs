@@ -6,11 +6,22 @@ public class PowerUp : MonoBehaviour
 	private float speed = 2f;
 
 	[SerializeField]
+	private AudioClip _powerUpSound;
+
+	[SerializeField]
 	private int powerupID; // 0 = TripleShoot, 1 = Speed, 2 = Shield
 
 	void Update()
 	{
+
+
 		transform.Translate(Vector3.down * Time.deltaTime * speed);
+
+
+		if (transform.position.y < -6f)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
@@ -18,6 +29,7 @@ public class PowerUp : MonoBehaviour
 		if (other.CompareTag("Player"))
 		{
 			Player player = other.GetComponent<Player>();
+			AudioSource.PlayClipAtPoint(_powerUpSound, Camera.main.transform.position);
 
 			if (player != null)
 			{

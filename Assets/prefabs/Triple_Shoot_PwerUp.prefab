@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1657458950453299241}
   - component: {fileID: 7152613396144863084}
   - component: {fileID: 4661109862801772613}
+  - component: {fileID: 3780523310233359479}
   m_Layer: 0
   m_Name: Triple_Shoot_PwerUp
   m_TagString: Untagged
@@ -102,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  _powerUpSound: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
   powerupID: 0
 --- !u!58 &4661109862801772613
 CircleCollider2D:
@@ -139,3 +141,25 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.003582716, y: 0.06441909}
   m_Radius: 0.82427436
+--- !u!95 &3780523310233359479
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8841343371130780496}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8c3cb32bee3ed484385ff5a89a29b7b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
