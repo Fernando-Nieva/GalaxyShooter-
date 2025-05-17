@@ -7,6 +7,9 @@ public class SpanwManager : MonoBehaviour // Se encarga de generar enemigos y po
 	private GameObject enemyShipPrefab; // Prefab del enemigo que se va a instanciar
 
 	[SerializeField]
+	private GameObject cube_enemyPrefab; // Prefab del enemigo que se va a instanciar
+
+	[SerializeField]
 	private GameObject[] powerUps; // Array de power-ups diferentes que se pueden spawnear
 
 	private Game_Manager _gameManeger; // Referencia al Game Manager
@@ -24,6 +27,7 @@ public class SpanwManager : MonoBehaviour // Se encarga de generar enemigos y po
 		// Inicia las dos rutinas de spawn (enemigos y power-ups)
 		StartCoroutine(EnemySpawnRoutine());
 		StartCoroutine(PowerUpSpawnRoutine());
+		StartCoroutine(cube_enemyPrefabRoutine());
 	}
 
 	IEnumerator EnemySpawnRoutine()
@@ -39,7 +43,23 @@ public class SpanwManager : MonoBehaviour // Se encarga de generar enemigos y po
 		}
 	}
 
-	IEnumerator PowerUpSpawnRoutine()
+	IEnumerator cube_enemyPrefabRoutine()
+	{
+		Debug.Log("cube_enemyPrefabRoutine iniciada."); // Verifica que se inicia
+
+		while (_gameManeger != null && _gameManeger.gameOver == false)
+		{
+			Debug.Log("Spawneando nuevo cubo...");
+			Instantiate(cube_enemyPrefab, new Vector3(Random.Range(-7f, 7f), 7, 0), Quaternion.identity);
+			yield return new WaitForSeconds(2.0f);
+		}
+
+		Debug.LogWarning("Rutina detenida: _gameManeger es null o gameOver = true.");
+	}
+
+
+
+IEnumerator PowerUpSpawnRoutine()
 	{
 		// Mientras el juego no haya terminado (gameOver = false)
 		while (_gameManeger.gameOver == false)

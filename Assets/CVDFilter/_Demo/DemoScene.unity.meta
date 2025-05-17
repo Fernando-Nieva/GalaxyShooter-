@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4aad26b0f2518c84c91c819d731108d2
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 127303
+  packageName: CVD Filter (Post Processing v2)
+  packageVersion: 1.1.0
+  assetPath: Assets/CVDFilter/_Demo/DemoScene.unity
+  uploadId: 507913

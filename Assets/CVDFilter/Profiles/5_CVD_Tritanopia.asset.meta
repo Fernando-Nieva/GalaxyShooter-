@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 32c6a969f5cb3a749978c99df23ef260
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 127303
+  packageName: CVD Filter (Post Processing v2)
+  packageVersion: 1.1.0
+  assetPath: Assets/CVDFilter/Profiles/5_CVD_Tritanopia.asset
+  uploadId: 507913

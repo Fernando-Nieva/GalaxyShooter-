@@ -450,11 +450,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8373745115594593458}
   - component: {fileID: 2339262987175766691}
-  - component: {fileID: 2494899793419416257}
   - component: {fileID: 6182577514063516886}
   - component: {fileID: 6161928394415882993}
   - component: {fileID: 727612280445873778}
   - component: {fileID: 6180120810058626353}
+  - component: {fileID: 6346624709823292626}
+  - component: {fileID: 2494899793419416257}
+  - component: {fileID: 7988692310804005887}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -536,33 +538,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2494899793419416257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9055168707161243018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd7e726517e2ce42b8770ea63a29c98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseSpeed: 5
-  lives: 3
-  shieldActive: 0
-  shieldVisualizer: {fileID: 6877972789244673050}
-  minY: -6.6
-  maxY: 3.96
-  minX: -9.1
-  maxX: 9.1
-  laserPrefab: {fileID: 8829981151022327052, guid: 97baff1c811a9dc4dbe1ba19bdfd83c9, type: 3}
-  tripleShootPrefab: {fileID: 8288461950608618845, guid: 0bc473685b9d0244ea7a4cfd1234b26d, type: 3}
-  fireRate: 0.3
-  _explosionprefab: {fileID: 7188437160292947573, guid: f732ba0fd6add264ebc2ffedc907b601, type: 3}
-  _engines:
-  - {fileID: 8026133038806781875}
-  - {fileID: 2306733159092674695}
 --- !u!50 &6182577514063516886
 Rigidbody2D:
   serializedVersion: 5
@@ -745,3 +720,64 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &6346624709823292626
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9055168707161243018}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b78e92e8b2a9c1d41896fd491a3a3491, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2494899793419416257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9055168707161243018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd7e726517e2ce42b8770ea63a29c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 5
+  lives: 3
+  shieldActive: 0
+  shieldVisualizer: {fileID: 6877972789244673050}
+  minY: -6.6
+  maxY: 3.96
+  minX: -9.1
+  maxX: 9.1
+  laserPrefab: {fileID: 8829981151022327052, guid: 97baff1c811a9dc4dbe1ba19bdfd83c9, type: 3}
+  tripleShootPrefab: {fileID: 8288461950608618845, guid: 0bc473685b9d0244ea7a4cfd1234b26d, type: 3}
+  fireRate: 0.3
+  _explosionprefab: {fileID: 7188437160292947573, guid: f732ba0fd6add264ebc2ffedc907b601, type: 3}
+  _engines:
+  - {fileID: 8026133038806781875}
+  - {fileID: 2306733159092674695}
+--- !u!114 &7988692310804005887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9055168707161243018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 195d315f7eedb5341b85c7224cc251a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

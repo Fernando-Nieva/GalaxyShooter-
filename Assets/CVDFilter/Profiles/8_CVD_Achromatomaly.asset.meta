@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 11375a69016ed524ebc2f8a626d5a1f2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 127303
+  packageName: CVD Filter (Post Processing v2)
+  packageVersion: 1.1.0
+  assetPath: Assets/CVDFilter/Profiles/8_CVD_Achromatomaly.asset
+  uploadId: 507913

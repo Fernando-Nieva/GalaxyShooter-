@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fecd5e032f519d840aa3bb37aaa043dc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 127303
+  packageName: CVD Filter (Post Processing v2)
+  packageVersion: 1.1.0
+  assetPath: Assets/CVDFilter/Profiles/2_CVD_Protanomaly.asset
+  uploadId: 507913

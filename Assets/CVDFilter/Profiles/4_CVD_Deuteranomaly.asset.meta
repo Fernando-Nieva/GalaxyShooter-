@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8dccc7b1547d38049a9c6a5c2ccb36ed
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 127303
+  packageName: CVD Filter (Post Processing v2)
+  packageVersion: 1.1.0
+  assetPath: Assets/CVDFilter/Profiles/4_CVD_Deuteranomaly.asset
+  uploadId: 507913

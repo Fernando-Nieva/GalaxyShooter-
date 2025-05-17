@@ -2,7 +2,7 @@
 
 public class Game_Manager : MonoBehaviour
 {
-	public bool gameOver = true; // Indica si el juego está terminado o no
+	public bool gameOver = false; // Indica si el juego está terminado o no
 
 	public GameObject playerPrefab; // Prefab del jugador para instanciar cuando se reinicie
 

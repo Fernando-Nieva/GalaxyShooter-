@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: da6204778461ce547a86468321592915
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 127303
+  packageName: CVD Filter (Post Processing v2)
+  packageVersion: 1.1.0
+  assetPath: Assets/CVDFilter/Profiles/6_CVD_Tritanomaly.asset
+  uploadId: 507913
